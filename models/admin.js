@@ -37,12 +37,12 @@ const AdminSchema = new mongoose.Schema({
   }
 });
 
-UserSchema.pre('save', function (next) {
+
+AdminSchema.pre('save', function (next) {
   let pass = hashPass(this.password);
   this.password = pass;
   next();
 });
-
 
 const admin = mongoose.model('Admin', AdminSchema);
 

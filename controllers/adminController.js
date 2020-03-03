@@ -11,7 +11,9 @@ class AdminController {
             .then(function (users) {
                 res.status(200).json({users, status: 200})
             })
-            .catch(next)
+            .catch(err => {
+                res.status(500).json(err);
+            })
     };  
 
     static readAllAdmin(req,res,next) {
@@ -19,7 +21,9 @@ class AdminController {
             .then(function(admins) {
                 res.status(200).json({admins, status: 200});
             })
-            .catch(next);
+            .catch(err => {
+                console.log(err.message)
+            });
     };
 
     static readAllAccounts(req,res,next) {

@@ -25,7 +25,7 @@ mongoose.connect(mongo_uri, {useNewUrlParser: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log('Welcome to mongoDB admin backend')
+  console.log('Welcome to mongoDB admin backend');
 });
 
 //app use
@@ -34,17 +34,11 @@ app.use(express.urlencoded({extended: false}));
 app.use(cors());
 app.use(morgan('combined'));
 
-
 //Router use;
 
 app.use(MainRouter);
 
 app.use(ErrorHandler);
 
-
-
 //app-listen;
 app.listen(PORT, () => console.log(`Admin Server started on ${PORT}`));
-
-
-

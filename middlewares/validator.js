@@ -2,9 +2,10 @@ const { verifyToken } = require('../helpers/jwt');
 const Admin = require('../models/admin');
 
 function Authentication(req,res,next) {
-    if (req.headers.adminToken) {
-        let decoded = verifyToken(req.headers.adminToken);
+    if (req.headers.admintoken) {
+        let decoded = verifyToken(req.headers.admintoken);
         req.decoded = decoded;
+        next();
     }else {
         next({message: 'You must login first'})
     };
@@ -22,7 +23,6 @@ function AdminAuthorization(req,res,next) {
         })
         .catch(next);
 };
-
 
 module.exports = {
     Authentication,
