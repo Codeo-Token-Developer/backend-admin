@@ -40,6 +40,10 @@ const kycSchema = new mongoose.Schema({
    user: {
        type: mongoose.Schema.Types.ObjectId,
        ref: 'User'
+   },
+   approved: {
+       type: Boolean,
+       default: false
    }
 })
 

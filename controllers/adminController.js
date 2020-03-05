@@ -4,6 +4,11 @@ const Account = require('../models/account');
 const bankAccount = require('../models/bankAccount');
 const { checkPass } = require('../helpers/hashPassword');
 const { generateToken } = require('../helpers/jwt');
+const KYC = require('../models/kyc');
+const CreditCard = require('../models/creditCard');
+const History = require('../models/accountHistory');
+const Fee = require('../models/fee');
+
 
 class AdminController {
 
@@ -69,19 +74,46 @@ class AdminController {
         .catch(next);
     };
 
-    static deleteUser(req,res,next) {
-        let id = req.params.id;
-        User.deleteOne({_id: id })
-            .then(function() {
-                res.status(201).json({message: 'User has been deleted!', status: 201})
+    static deleteOneUser(req,res,next) {
+        let userId = req.params.userId;
+        User.deleteOne({_id: userId})
+            .then(function () {
+                return Account.deleteOne({user: userId})
+                    .then(function() {
+                        return KYC.deleteOne({user: userId})
+                            .then(function () {
+                                return CreditCard.deleteOne({user: userId})
+                                    .then(function () {
+                                        return bankAccount.deleteOne({user: userId})
+                                            .then(function () {
+                                                History.deleteMany({user: userId})
+                                                    .then(function () {
+                                                        return Fee.deleteMany({user: userId})
+                                                            .then(function () {
+                                                                res.status(200).json({message: 'User has been deleted'});
+                                                            })
+                                                    })
+                                            })
+                                    })
+                            })
+                    })
             })
             .catch(next);
     };
 
-    static readAllVerifiedUser(req,res,next) {
+    static readAllTotalActiveUser(req,res,next) {
         User.find({verification: true})
             .then(function (users) {
                 res.status(200).json({users, status: 200})
+            })
+            .catch(next);
+    };
+
+    static updateFee(req,res,next) {
+        let feeId = req.params.feeId;
+        Fee.updateOne({_id: feeId})
+            .then(function() {
+                res.status(200).json({message: 'Admin fee already updated'})
             })
             .catch(next);
     };
@@ -92,8 +124,18 @@ class AdminController {
                 res.status(200).json({banks, status: 200})
             })
             .catch(next)
-    }
+    };
 
+    static kycApproved(req,res,next) {
+        let kycId = req.params.kycId;
+        KYC.updateOne({_id: kycId}, {approved: true})
+            .then(function () {
+                res.status(200).json({message: 'KYC has been approved', status: 200})
+            })
+            .catch(next);
+    };
+
+    
 };
 
 module.exports = AdminController;

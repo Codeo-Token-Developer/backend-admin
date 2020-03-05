@@ -9,5 +9,9 @@ Router.get('/accounts', Authentication, AdminAuthorization, adminController.read
 Router.post('/', Authentication, AdminAuthorization, adminController.create);
 Router.post('/login', adminController.login);
 Router.delete('/', Authentication, AdminAuthorization, adminController.deleteUser);
+Router.patch('/', Authentication, AdminAuthorization, adminController.kycApproved);
+Router.get('/activedUser', Authentication, AdminAuthorization, adminController.readAllTotalActiveUser);
+Router.patch('/fee', Authentication, AdminAuthorization, adminController.updateFee);
+
 
 module.exports = Router;
