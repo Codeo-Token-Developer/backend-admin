@@ -29,7 +29,11 @@ const UserSchema = new mongoose.Schema({
     refferal: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    approval_verified: {
+        type: Boolean,
+        default: false
+      }
 });
 
 const user = mongoose.model('User', UserSchema);
