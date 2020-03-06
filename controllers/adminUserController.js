@@ -29,9 +29,14 @@ class AdminUserController {
             .catch(next);
     };
 
-      
-
-
+    static approvalKYC(req,res,next) {
+        let userId = req.params.userId;
+        User.updateOne({_id: userId}, {kyc: true})
+            .then(function () {
+                res.status(200).json({message: 'User KYC has been approved'});
+            })
+            .catch(next);
+    };
 };
 
 module.exports = AdminUserController;
