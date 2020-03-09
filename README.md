@@ -99,9 +99,6 @@ headers: {
 ```
 
 
-
-
-
 ##### **<u>CREATE NEW USER</u>**
 
 Required: 
