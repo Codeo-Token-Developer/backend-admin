@@ -37,6 +37,33 @@ class AdminUserController {
             })
             .catch(next);
     };
+
+    static deleteOneUser(req,res,next) {
+        let userId = req.params.userId;
+        User.deleteOne({_id: userId})
+            .then(function () {
+                return Account.deleteOne({user: userId})
+                    .then(function() {
+                        return KYC.deleteOne({user: userId})
+                            .then(function () {
+                                return CreditCard.deleteOne({user: userId})
+                                    .then(function () {
+                                        return bankAccount.deleteOne({user: userId})
+                                            .then(function () {
+                                                History.deleteMany({user: userId})
+                                                    .then(function () {
+                                                        return Fee.deleteMany({user: userId})
+                                                            .then(function () {
+                                                                res.status(200).json({message: 'User has been deleted'});
+                                                            })
+                                                    })
+                                            })
+                                    })
+                            })
+                    })
+            })
+            .catch(next);
+    };
 };
 
 module.exports = AdminUserController;
