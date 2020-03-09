@@ -82,3 +82,38 @@ Error Output example:
 }
 ```
 
+------
+
+
+
+#### **<u>Read All Users</u>**
+
+Require: 
+
+```
+path: '/admins/users',
+method: 'GET',
+headers: {
+	jwttoken
+}
+```
+
+
+
+
+
+##### **<u>CREATE NEW USER</u>**
+
+Required: 
+
+```
+path: '/admins-users',
+method: 'POST',
+data: {
+	name, email, password
+}
+```
+
+Success Output example: 
+
+​	
