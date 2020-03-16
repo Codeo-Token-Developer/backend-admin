@@ -23,7 +23,7 @@ const ErrorHandler = require("./middlewares/errHandler");
 
 //MongoDB connecction;
 
-const mongo_uri = process.env.MONGO_URI2;
+const mongo_uri = process.env.MONGO_URL;
 mongoose.connect(mongo_uri, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
