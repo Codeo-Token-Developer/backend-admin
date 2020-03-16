@@ -20,15 +20,15 @@ const ErrorHandler = require('./middlewares/errHandler');
 
 //MongoDB connecction;
 
-const mongo_uri = process.env.MONGO_URI;
-mongoose.connect(mongo_uri, {useNewUrlParser: true});
+const mongo_uri = process.env.MONGO_URL;
+mongoose.connect(mongo_uri, {useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('Welcome to mongoDB admin backend');
 });
 
-//app use
+//app use;
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
