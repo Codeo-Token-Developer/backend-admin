@@ -70,13 +70,6 @@ class AdminFunctionController {
             .catch(next)
     };
 
-    static updateFee(req,res,next) {
-        KYC.find({})
-            .then(function (kyc) {
-
-            })
-    };
-
 };
 
 module.exports = AdminFunctionController;

@@ -19,7 +19,6 @@ const MainRouter = require('./routes');
 const ErrorHandler = require('./middlewares/errHandler');
 
 //MongoDB connecction;
-
 const mongo_uri = process.env.MONGO_URL;
 mongoose.connect(mongo_uri, {useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
@@ -35,9 +34,7 @@ app.use(cors());
 app.use(morgan('combined'));
 
 //Router use;
-
 app.use(MainRouter);
-
 app.use(ErrorHandler);
 
 //app-listen;
