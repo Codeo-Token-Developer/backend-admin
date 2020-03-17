@@ -29,6 +29,6 @@ function createFee(req,res,next) {
 };
 
 Router.patch('/',Authentication,AdminAuthorization,updateFee);
-Router.post('/', Authentication,AdminAuthorization,createFee);
+// Router.post('/', Authentication,AdminAuthorization,createFee);
 
 module.exports = Router;

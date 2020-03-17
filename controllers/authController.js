@@ -14,6 +14,7 @@ class AuthController {
 
     static login(req,res,next) {
         let { email, password } = req.body;
+        console.log(req.body)
         Admin.findOne({email})
             .then(function (admin) {
                 if (admin) {

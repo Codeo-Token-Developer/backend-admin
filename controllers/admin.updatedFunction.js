@@ -16,7 +16,7 @@ class updatedFunction {
     };
 
     static kycChecking(req,res,next) {
-
+        
     };
 
     static creditCard(req,res,next) {
