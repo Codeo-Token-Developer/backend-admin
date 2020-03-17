@@ -26,6 +26,14 @@ class AdminFunctionController {
             .catch(next);
     };
 
+    static readAllActiveUser (req,res,next) {
+        User.find({verification: true})
+            .then(function (users) {
+                res.status(200).json({users, status: 200})
+            })
+            .catch(next);
+    };
+
     static readAllAdmin(req,res,next) {
         Admin.find({})
             .then(function(admins) {

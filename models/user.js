@@ -26,9 +26,12 @@ const UserSchema = new mongoose.Schema({
     verification: {
         type: Boolean
     },
-    refferal: {
+    reff: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    refferal_address: {
+        type: String,
     },
     approval_verified: {
         type: Boolean,
