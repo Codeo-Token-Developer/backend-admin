@@ -34,8 +34,12 @@ const AdminSchema = new mongoose.Schema({
     type: String,
     required:[true, 'Password cannot be empty'],
     min: [6, 'Password must 6 or more characters']
+  },
+  verification: {
+    type: Boolean,
+    default: false
   }
-});
+},{ timestamps: { createdAt: 'created_at' } });
 
 
 AdminSchema.pre('save', function (next) {
