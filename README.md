@@ -217,6 +217,43 @@ Success output example:
 	"message": "CMS Are created"
 }
 ```
+---
+
+#### **<u>Read All Users Active</u>**
+
+Required:
+
+```
+path: 'admins/function/users-active',
+method: 'GET',
+headers: {
+	admintoken
+}
+```
+
+Success output example:
+
+```
+{
+	"users": [
+    {
+      "verification": true,
+      "approval_verified": true,
+      "_id": "5e71d79218c9e11754e1ec92",
+      "date": "2020-03-18T08:04:20.336Z",
+      "isLogin": true,
+      "full_name": "Laskar Ksatria S",
+      "username": "laskarks",
+      "password": "$2a$10$yUAlLjhoC43J9AosA1/M7OBZL/txEseCofo259O1QUzst8h422/sa",
+      "referral_address": "dapp.codeotoken.com/ref/laskarks",
+      "email": "laskar.ksatria12@gmail.com",
+      "__v": 0,
+      "account": "5e72dba739080d147048822d"
+    },
+  ]
+}
+```
+---
 
 
 #### **<u>CRYPTO APPROVED</u>**
