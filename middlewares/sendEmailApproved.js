@@ -5,7 +5,6 @@ const { generateToken } = require('../helpers/jwt');
 function sendEmail(req,res,next) {
     let token = generateToken(req.payload);
     let user = req.payload;
-    let link = `http://${req.headers.host}/api/user/auth/verify/${token}`;
     const mailOptions = {
         to: user.email,
         from: process.env.FROM_EMAIL,

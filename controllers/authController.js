@@ -35,13 +35,22 @@ class AuthController {
             .catch(next)
     };
 
-    static emailVerification(req,res,next) {
+    static emailUserVerification(req,res,next) {
         let decoded = verifyToken(req.params.token);
-        Admin.findOneAndUpdate({_id: decoded.id}, {verification: true})
-            .then(function(admin) {
-                res.redirect('https://www.google.com/')
+        User.findOneAndUpdate({_id: decoded.id}, {verification: true})
+            .then(function(user) {
+                res.redirect('https://dapp.codeotoken.com');
             })
             .catch(next);
+    };
+
+    static emailAdminVerification(req,res,next) {
+        let decoded = verifyToken(req.params.token);
+        Admin.findOneAndUpdate({_id: decoded.id}, {verification: true})
+            .then(function (admin) {
+                res.redirect('https://www.google.com')
+            })
+            .catch(next)
     }
 };
 

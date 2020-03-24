@@ -219,16 +219,191 @@ Success output example:
 ```
 
 
+#### **<u>CRYPTO APPROVED</u>**
+
+Required:
+
+```
+path: 'admins/approved/crypto/:userId',
+method: 'PATCH',
+headers: {
+	admintoken
+},
+params: user id
+```
+
+Success output example: 
+```
+{
+  "message": <message>,
+  "status": <status>
+}
+```
+
+Error output example: 
+```
+{
+  "message": <message>,
+}
+```
+
+#### **<u>BANK ACCOUNT APPROVED</u>**
+
+Required:
+
+```
+path: 'admins/approved/bankAccount/:userId',
+method: 'PATCH',
+headers: {
+	admintoken
+},
+params: user id
+```
+
+Success output example: 
+```
+{
+  "message": <message>,
+  "status": <status>
+}
+```
+
+Error output example: 
+```
+{
+  "message": <message>,
+}
+```
+
+
+#### **<u>CREDIT CARD APPROVED</u>**
+
+Required:
+
+```
+path: 'admins/approved/creditCard/:userId',
+method: 'PATCH',
+headers: {
+	admintoken
+},
+params: user id
+```
+
+Success output example: 
+```
+{
+  "message": <message>,
+  "status": <status>
+}
+```
+
+Error output example: 
+```
+{
+  "message": <message>,
+}
+```
+
+
+#### **<u>KYC APPROVED</u>**
+
+Required:
+
+```
+path: 'admins/approved/kyc/:userId',
+method: 'PATCH',
+headers: {
+	admintoken
+},
+params: user id
+```
+
+Success output example: 
+```
+{
+  "message": <message>,
+  "status": <status>
+}
+```
+
+Error output example: 
+```
+{
+  "message": <message>,
+}
+```
 
 
 
+#### **<u>Read AllAccounts</u>**
+
+Required:
+
+```
+path: '/admins/function/allAccounts',
+method: 'GET',
+headers: {
+	admintoken
+},
+
+```
+
+Success output example: 
+```
+{
+  "allAccounts: {
+    cryptos: [<cryptos>],
+    bankAccounts: [<bankAccounts>],
+    creditCards: [<creditCards>],
+    kycs: [<kycs>],
+  },
+  "status": 200
+}
+```
+
+Error output example: 
+```
+{
+  "message": <message>,
+}
+```
 
 
+notVerifiedAccounts
 
 
+#### **<u>Read AllNotApproved</u>**
 
+Required:
 
+```
+path: '/admins/function/allNotVerified',
+method: 'GET',
+headers: {
+	admintoken
+},
 
+```
+
+Success output example: 
+```
+{
+  "notVerifiedAccounts: {
+    cryptos: [<cryptos>],
+    bankAccounts: [<bankAccounts>],
+    creditCards: [<creditCards>],
+    kycs: [<kycs>],
+  },
+  "status": 200
+}
+```
+
+Error output example: 
+```
+{
+  "message": <message>,
+}
+```
 
 
 

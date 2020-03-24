@@ -55,28 +55,74 @@ class AdminFunctionController {
         let userId = req.params.userId;
         User.deleteOne({_id: userId})
             .then(function () {
-                 KYC.deleteOne({user: userId});
+                return KYC.deleteOne({user: userId});
             })
             .then(function () {
-                CreditCard.deleteOne({user: userId});
+               return CreditCard.deleteOne({user: userId});
             })
             .then(function() {
-                BankAccount.deleteOne({user: userId});
+               return BankAccount.deleteOne({user: userId});
             })
             .then(function () {
-                Crypto.deleteOne({user: userId});
+               return Crypto.deleteOne({user: userId});
             })
             .then(function() {
-                AccountHistory.deleteOne({user: userId});
+               return AccountHistory.deleteOne({user: userId});
             })
             .then(function() {
-                Account.deleteOne({user: userId});
+               return Account.deleteOne({user: userId});
             })
             .then(function () {
                 res.status(202).json({message: 'User and all information about user has been deleted', status: 202})
             })
             .catch(next)
     };
+
+    static readAllAccount(req,res,next) {
+        let allAccounts = {};
+
+        Crypto.find({})
+            .then(function (crypto) {
+                allAccounts.cryptos = crypto;
+               return BankAccount.find({})
+            })
+            .then(function (bank) {
+                allAccounts.bankAccounts = bank;
+               return CreditCard.find({})
+            })
+            .then(function (cards) {
+                allAccounts.creditCards = cards;
+               return KYC.find({})
+            })
+            .then(function (kycs) {
+                allAccounts.kycs = kycs;
+               return res.status(200).json({allAccounts, status: 200})
+            })
+            .catch(next)
+    };
+
+
+    static readAllNotVerified(req,res,next) {
+        let notVerifiedAccounts = {};
+        Crypto.find({approved: false})
+            .then(function(cry) {
+                notVerifiedAccounts.cryptos = cry;
+                return CreditCard.find({approved: false})
+            })
+            .then(function (cards) {
+                notVerifiedAccounts.creditCards = cards;
+                return BankAccount.find({approved: false})
+            })
+            .then(function (bank) {
+                notVerifiedAccounts.bankAccounts = bank;
+               return KYC.find({approved: false})
+            })
+            .then(function (kycs) {
+                notVerifiedAccounts.kycs = kycs;
+                res.status(200).json({notVerifiedAccounts, status: 200})
+            })
+            .catch(next);
+    }
 
 };
 
