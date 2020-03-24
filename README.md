@@ -21,15 +21,8 @@ Success output example:
 
 ```
 {
-  "message": "Admin success added",
-  "status": 200,
-  "admin": {
-    "_id": "5e6b3f230e8c05354c91e876",
-    "name": "Laskar",
-    "email": "laskarksatria266@gmail.com",
-    "password": "$2a$10$0fPinszuXOax2eHNqxKUn.vH6tNHRm9Jnms81LkJi.TR7mEYQeSqK",
-    "__v": 0
-  }
+  "message": <message>,
+  "status": <status>
 }
 ```
 
@@ -42,6 +35,22 @@ Error output example:
 }
 ```
 
+
+##### <u>**EMAIL VERIFICATION**</u>
+
+Required:
+
+```
+path: '/api/auth/verify/:token',
+method: 'PATCH',
+
+```
+
+Success output example:
+
+```
+*Note: It will redirect to app
+```
 
 
 ##### <u>**LOGIN ADMIN**</u>
@@ -73,7 +82,6 @@ Error output example:
   "status": 500
 }
 ```
-
 
 
 ###### **<u>Read All Users</u>**
@@ -185,8 +193,6 @@ Success output example:
   "status": 201
 }
 ```
-
-
 
 **<u>CREATE CMS</u>**
 

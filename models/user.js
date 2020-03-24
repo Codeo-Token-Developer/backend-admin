@@ -24,7 +24,8 @@ const UserSchema = new mongoose.Schema({
         type: Date,
     },
     verification: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     reff: {
         type: mongoose.Schema.Types.ObjectId,

@@ -1,13 +1,16 @@
 const Admin = require('../models/admin');
-const { generateToken } = require('../helpers/jwt');
+const { generateToken, verifyToken } = require('../helpers/jwt');
 const { checkPass } = require('../helpers/hashPassword');
+
 
 class AuthController {
     static create(req,res,next) {
         let { name, email, password } = req.body;
         Admin.create({name, email, password})
             .then(function(admin) {
-                res.status(202).json({message: 'Admin success added', status: 200, admin})
+                let payload = {id: admin.id, email: admin.email}
+                req.payload = payload;
+                next();
             })
             .catch(next)
     };
@@ -31,6 +34,15 @@ class AuthController {
             })
             .catch(next)
     };
+
+    static emailVerification(req,res,next) {
+        let decoded = verifyToken(req.params.token);
+        Admin.findOneAndUpdate({_id: decoded.id}, {verification: true})
+            .then(function(admin) {
+                res.redirect('https://www.google.com/')
+            })
+            .catch(next);
+    }
 };
 
 module.exports = AuthController;
