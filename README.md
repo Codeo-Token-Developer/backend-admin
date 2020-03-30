@@ -219,6 +219,53 @@ Success output example:
 ```
 ---
 
+**<u>Edit CMS</u>**
+
+Required:
+
+```
+path: 'admins/cms/:id',
+method: 'PATCH',
+headers: {
+	admintoken
+},
+data: {
+	title, category, description
+}
+```
+
+Success output example:
+
+```
+{
+	"cms": <cms>
+	"message": "CMS Are updated"
+}
+```
+---
+
+**<u>Delete CMS</u>**
+
+Required:
+
+```
+path: 'admins/cms/:id',
+method: 'DELETE',
+headers: {
+	admintoken
+}
+```
+
+Success output example:
+
+```
+{
+	"cms": <cms>
+	"message": "CMS Are deleted"
+}
+```
+---
+
 #### **<u>Read All Users Active</u>**
 
 Required:
